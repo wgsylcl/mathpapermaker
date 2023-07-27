@@ -1,0 +1,26 @@
+{
+  "name": "mathpapermaker",
+  "version": "1.0.0",
+  "description": "一个用来制作初中数学试卷的应用程序，你可以用它生成Latex文件，基于electron开发。",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "mathpapermaker"
+  },
+  "keywords": [
+    "LCl20081011"
+  ],
+  "author": "wgsylcl",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.2.1",
+    "electron": "^25.3.2",
+    "electron-builder": "^24.6.3"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.1"
+  }
+}
