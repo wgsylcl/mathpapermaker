@@ -1,10 +1,120 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>mathpapermaker</title>
-    </head>
-    <body>
-        
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>未打开试卷</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <h2 id="warningEdit">未打开任何试卷！</h2>
+    <div id="headdiv">
+        <h3>试卷导言</h3>
+        <form name="paper">
+            试卷标题<input type="text" name="title"><br>
+            试卷信息<input type="text" name="information">
+        </form>
+    </div>
+    <div id="guidediv">
+        <h3>试卷内容</h3>
+        <button type="button" id="lastTaskButton">上一题</button>
+        <p id="pageEdit">第0题，共0题，</p>
+        <p id="typeEdit">本题是**题</p>
+        <button type="button" id="nextTaskbutton">下一题</button>
+    </div>
+    <div id="maindiv">
+        <form name="task">
+            <p><br>主题目</p>
+            <br><textarea id="mainEdit">在此输入主题目信息</textarea>
+        </form>
+    </div>
+    <div id="choicediv">
+        <form name="choice">
+            <fieldset>
+                <legend>选项内容：</legend>
+                显示格式：
+                <input type="radio" name="type" value="onp" checked>一行4个
+                <input type="radio" name="type" value="twp">一行2个
+                <input type="radio" name="type" value="fop">一行1个
+                <br>A&nbsp;<input type="text" name="A">
+                <br>B&nbsp;<input type="text" name="B">
+                <br>C&nbsp;<input type="text" name="C">
+                <br>D&nbsp;<input type="text" name="D">
+            </fieldset>
+        </form>
+    </div>
+    <div id="subtaskdiv">
+        <form name="subtask">
+            子题目数量：
+            <input type="radio" name="cnt" value="0" checked>无子题目
+            <input type="radio" name="cnt" value="1">1
+            <input type="radio" name="cnt" value="2">2
+            <input type="radio" name="cnt" value="3">3
+            <input type="radio" name="cnt" value="4">4
+        </form>
+        <div id="subtask1">
+            <fieldset>
+                <legend>子题目1</legend>
+                主题目：<br>
+                <textarea id="subtask1main"></textarea>
+                <form name="subtask1">
+                    子题目数量：
+                    <input type="radio" name="cnt" value="0" checked>无子题目
+                    <input type="radio" name="cnt" value="1">1
+                    <input type="radio" name="cnt" value="2">2
+                    <br>子题目1：<br><textarea id="sub1subtask1"></textarea>
+                    <br>子题目2：<br><textarea id="sub2subtask1"></textarea>
+                </form>
+            </fieldset>
+        </div>
+        <div id="subtask2">
+            <fieldset>
+                <legend>子题目2</legend>
+                主题目：<br>
+                <textarea id="subtask2main"></textarea>
+                <form name="subtask2">
+                    子题目数量：
+                    <input type="radio" name="cnt" value="0" checked>无子题目
+                    <input type="radio" name="cnt" value="1">1
+                    <input type="radio" name="cnt" value="2">2
+                    <br>子题目1：<br><textarea id="sub1subtask2"></textarea>
+                    <br>子题目2：<br><textarea id="sub2subtask2"></textarea>
+                </form>
+            </fieldset>
+        </div>
+        <div id="subtask3">
+            <fieldset>
+                <legend>子题目3</legend>
+                主题目：<br>
+                <textarea id="subtask3main"></textarea>
+                <form name="subtask3">
+                    子题目数量：
+                    <input type="radio" name="cnt" value="0" checked>无子题目
+                    <input type="radio" name="cnt" value="1">1
+                    <input type="radio" name="cnt" value="2">2
+                    <br>子题目1：<br><textarea id="sub1subtask3"></textarea>
+                    <br>子题目2：<br><textarea id="sub2subtask3"></textarea>
+                </form>
+            </fieldset>
+        </div>
+        <div id="subtask4">
+            <fieldset>
+                <legend>子题目4</legend>
+                主题目：<br>
+                <textarea id="subtask4main"></textarea>
+                <form name="subtask4">
+                    子题目数量：
+                    <input type="radio" name="cnt" value="0" checked>无子题目
+                    <input type="radio" name="cnt" value="1">1
+                    <input type="radio" name="cnt" value="2">2
+                    <br>子题目1：<br><textarea id="sub1subtask4"></textarea>
+                    <br>子题目2：<br><textarea id="sub2subtask4"></textarea>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+
 </html>

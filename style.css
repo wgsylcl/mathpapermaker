@@ -1,0 +1,80 @@
+p {
+    display: inline;
+}
+
+html {
+    font-family: 微软雅黑, 'Times New Roman', Times, serif;
+}
+
+textarea {
+    width: 600px;
+    height: 150px;
+}
+
+#choicediv {
+    display: block;
+}
+
+#maindiv {
+    display: block;
+}
+
+#headdiv {
+    display: block;
+}
+
+#guidediv {
+    display: block;
+}
+
+#sub1subtask1 {
+    display: block;
+}
+
+#sub2subtask1 {
+    display: block;
+}
+
+#sub1subtask2 {
+    display: block;
+}
+
+#sub2subtask2 {
+    display: block;
+}
+
+#sub1subtask3 {
+    display: block;
+}
+
+#sub2subtask3 {
+    display: block;
+}
+
+#sub1subtask4 {
+    display: block;
+}
+
+#sub2subtask4 {
+    display: block;
+}
+
+#subtask1 {
+    display: block;
+}
+
+#subtask2 {
+    display: block;
+}
+
+#subtask3 {
+    display: block;
+}
+
+#subtask4 {
+    display: block;
+}
+
+#subtaskdiv {
+    display: block;
+}

@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
 const path = require('path')
 
 const createWindow = () => {
@@ -9,6 +9,63 @@ const createWindow = () => {
       preload: path.join(__dirname, 'preload.js')
     }
   })
+
+  let applicationMenu = [
+    {
+      label: 'file',
+      submenu: [
+        {
+          label: 'create',
+          accelerator: 'Ctrl+N',
+          click: () => win.webContents.send('create')
+        },
+        {
+          label: 'open',
+          accelerator: 'Ctrl+O',
+          click: () => win.webContents.send('open')
+        },
+        {
+          label: 'save',
+          accelerator: 'Ctrl+S',
+          click: () => win.webContents.send('save')
+        },
+        {
+          label: 'export',
+          accelerator: 'Ctrl+E',
+          click: () => win.webContents.send('export')
+        }
+      ]
+    },
+    {
+      label: 'Tools',
+      submenu: [
+        {
+          label: 'Reload',
+          accelerator: 'CmdOrCtrl+R',
+          click: function (item, focusedWindow) {
+            if (focusedWindow)
+              focusedWindow.reload();
+          }
+        },
+        {
+          label: 'Toggle Developer Tools',
+          accelerator: (function () {
+            if (process.platform == 'darwin')
+              return 'Alt+Command+I';
+            else
+              return 'Ctrl+Shift+I';
+          })(),
+          click: function (item, focusedWindow) {
+            if (focusedWindow)
+              focusedWindow.toggleDevTools();
+          }
+        }
+      ]
+    }
+  ]
+
+  var menu = Menu.buildFromTemplate(applicationMenu)
+  Menu.setApplicationMenu(menu);
 
   win.loadFile('index.html')
 }
