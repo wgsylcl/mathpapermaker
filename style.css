@@ -26,6 +26,7 @@ textarea {
 
 #guidediv {
     display: none;
+    align-items: center;
 }
 
 #sub1subtask1div {
@@ -78,4 +79,12 @@ textarea {
 
 #subtaskdiv {
     display: none;
+}
+
+button {
+    display: inline-block;
+}
+
+input[type=text] {
+    font-family: Consolas,'Times New Roman', Times, serif;
 }

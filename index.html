@@ -5,9 +5,15 @@
     <meta charset="UTF-8" />
     <title>未打开试卷</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 
 <body>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: { inlineMath: [['$', '$']] }
+        });
+    </script>
     <h2 id="warningEdit">未打开任何试卷！</h2>
     <div id="headdiv">
         <h3>试卷导言</h3>
@@ -15,17 +21,15 @@
             试卷标题<input type="text" name="title" onchange="setpapertitle()"><br>
             试卷信息<input type="text" name="information" onchange="setpaperinformation()">
         </form>
+        <h3>试卷内容</h3>
     </div>
     <div id="guidediv">
-        <h3>试卷内容</h3>
-        <p id="pageEdit"></p>
-        <button type="button" id="lastTaskButton" onclick="topage(page-1)">上一题</button>
-        <button type="button" id="nextTaskButton" onclick="topage(page+1)">下一题</button>
+        <input type="button" id="lastTaskButton" onclick="topage(page-1)" value="上一题"><p id="pageEdit"></p><input type="button" id="nextTaskButton" onclick="topage(page+1)" value="下一题">
     </div>
     <div id="maindiv">
         <form name="task">
             <p><br>主题目</p>
-            <br><textarea id="mainEdit">在此输入主题目信息</textarea>
+            <br><textarea id="mainEdit" onchange="settext()">在此输入主题目信息</textarea>
         </form>
     </div>
     <div id="choicediv">
@@ -36,10 +40,10 @@
                 <input type="radio" name="type" value="onp" onchange="setchoicetype(1)" checked>一行4个
                 <input type="radio" name="type" value="twp" onchange="setchoicetype(2)">一行2个
                 <input type="radio" name="type" value="fop" onchange="setchoicetype(3)">一行1个
-                <br>A&nbsp;<input type="text" name="A" onchange="setchoice('A')">
-                <br>B&nbsp;<input type="text" name="B" onchange="setchoice('B')">
-                <br>C&nbsp;<input type="text" name="C" onchange="setchoice('C')">
-                <br>D&nbsp;<input type="text" name="D" onchange="setchoice('D')">
+                <br>A&nbsp;<input type="text" name="A" onchange="setchoice(1)">
+                <br>B&nbsp;<input type="text" name="B" onchange="setchoice(2)">
+                <br>C&nbsp;<input type="text" name="C" onchange="setchoice(3)">
+                <br>D&nbsp;<input type="text" name="D" onchange="setchoice(4)">
             </fieldset>
         </form>
     </div>
@@ -56,14 +60,14 @@
             <fieldset>
                 <legend>子题目1</legend>
                 主题目：<br>
-                <textarea id="subtask1main"></textarea>
+                <textarea id="subtask1main" onchange="setsubtasktext(1)"></textarea>
                 <form name="subtask1">
                     子题目数量：
                     <input type="radio" name="cnt" value="0" onclick="setsubsubtaskcnt(1,0)" checked>无子题目
                     <input type="radio" name="cnt" value="1" onclick="setsubsubtaskcnt(1,1)">1
                     <input type="radio" name="cnt" value="2" onclick="setsubsubtaskcnt(1,2)">2
-                    <div id="sub1subtask1div"><br>子题目1：<br><textarea id="sub1subtask1"></textarea></div>
-                    <div id="sub2subtask1div"><br>子题目2：<br><textarea id="sub2subtask1"></textarea></div>
+                    <div id="sub1subtask1div"><br>子题目1：<br><textarea id="sub1subtask1" onchange="setsubsubtasktext(1,1)"></textarea></div>
+                    <div id="sub2subtask1div"><br>子题目2：<br><textarea id="sub2subtask1" onchange="setsubsubtasktext(1,2)"></textarea></div>
                 </form>
             </fieldset>
         </div>
@@ -71,14 +75,14 @@
             <fieldset>
                 <legend>子题目2</legend>
                 主题目：<br>
-                <textarea id="subtask2main"></textarea>
+                <textarea id="subtask2main" onchange="setsubtasktext(2)"></textarea>
                 <form name="subtask2">
                     子题目数量：
                     <input type="radio" name="cnt" value="0" onclick="setsubsubtaskcnt(2,0)" checked>无子题目
                     <input type="radio" name="cnt" value="1" onclick="setsubsubtaskcnt(2,1)">1
                     <input type="radio" name="cnt" value="2" onclick="setsubsubtaskcnt(2,2)">2
-                    <div id="sub1subtask2div"><br>子题目1：<br><textarea id="sub1subtask2"></textarea></div>
-                    <div id="sub2subtask2div"><br>子题目2：<br><textarea id="sub2subtask2"></textarea></div>
+                    <div id="sub1subtask2div"><br>子题目1：<br><textarea id="sub1subtask2" onchange="setsubsubtasktext(2,1)"></textarea></div>
+                    <div id="sub2subtask2div"><br>子题目2：<br><textarea id="sub2subtask2" onchange="setsubsubtasktext(2,2)"></textarea></div>
                 </form>
             </fieldset>
         </div>
@@ -86,14 +90,14 @@
             <fieldset>
                 <legend>子题目3</legend>
                 主题目：<br>
-                <textarea id="subtask3main"></textarea>
+                <textarea id="subtask3main" onchange="setsubtasktext(3)"></textarea>
                 <form name="subtask3">
                     子题目数量：
                     <input type="radio" name="cnt" value="0" onclick="setsubsubtaskcnt(3,0)" checked>无子题目
                     <input type="radio" name="cnt" value="1" onclick="setsubsubtaskcnt(3,1)">1
                     <input type="radio" name="cnt" value="2" onclick="setsubsubtaskcnt(3,2)">2
-                    <div id="sub1subtask3div"><br>子题目1：<br><textarea id="sub1subtask3"></textarea></div>
-                    <div id="sub2subtask3div"><br>子题目2：<br><textarea id="sub2subtask3"></textarea></div>
+                    <div id="sub1subtask3div"><br>子题目1：<br><textarea id="sub1subtask3" onchange="setsubsubtasktext(3,1)"></textarea></div>
+                    <div id="sub2subtask3div"><br>子题目2：<br><textarea id="sub2subtask3" onchange="setsubsubtasktext(3,2)"></textarea></div>
                 </form>
             </fieldset>
         </div>
@@ -101,14 +105,14 @@
             <fieldset>
                 <legend>子题目4</legend>
                 主题目：<br>
-                <textarea id="subtask4main"></textarea>
+                <textarea id="subtask4main" onchange="setsubtasktext(4)"></textarea>
                 <form name="subtask4">
                     子题目数量：
                     <input type="radio" name="cnt" value="0" onclick="setsubsubtaskcnt(4,0)" checked>无子题目
                     <input type="radio" name="cnt" value="1" onclick="setsubsubtaskcnt(4,1)">1
                     <input type="radio" name="cnt" value="2" onclick="setsubsubtaskcnt(4,2)">2
-                    <div id="sub1subtask4div"><br>子题目1：<br><textarea id="sub1subtask4"></textarea></div>
-                    <div id="sub2subtask4div"><br>子题目2：<br><textarea id="sub2subtask4"></textarea></div>
+                    <div id="sub1subtask4div"><br>子题目1：<br><textarea id="sub1subtask4" onchange="setsubsubtasktext(4,1)"></textarea></div>
+                    <div id="sub2subtask4div"><br>子题目2：<br><textarea id="sub2subtask4" onchange="setsubsubtasktext(4,2)"></textarea></div>
                 </form>
             </fieldset>
         </div>

@@ -115,7 +115,7 @@ function loadpage() {
     htmledit.choicediv.style.display = 'none'
     htmledit.subtaskdiv.style.display = 'none'
     htmledit.maindiv.style.display = 'block'
-    htmledit.guidediv.style.display = 'block'
+    htmledit.guidediv.style.display = 'flex'
     htmledit.headdiv.style.display = 'block'
     htmledit.lastpageButton.style.display = 'block'
     htmledit.nextpageButton.style.display = 'block'
@@ -553,13 +553,13 @@ function setpaperinformation() {
 }
 
 function settext() {
-    edit = document.getElementById('mainEdit')
+    edit = htmledit.mainEdit
     paper.tasks[page].text = edit.value
 }
 
 function setchoice(name) {
-    edit = document.getElementsByName(name)
-    paper.tasks[page].choices[choicemap.get(name)] = edit.value
+    edit = htmledit.choices[name]
+    paper.tasks[page].choices[name] = edit.value
 }
 
 function setchoicetype(type) {
@@ -596,4 +596,17 @@ function setsubsubtaskcnt(taskid, num) {
     for (var i = 1; i <= num; i++) {
         taskEdit.subtaskdivs[i].style.display = 'block'
     }
+}
+
+function setsubtasktext(taskid) {
+    var task = paper.tasks[page]
+    var subtask = task.subtasks[taskid]
+    var subtaskEdit = htmledit.subtasks[taskid]
+    subtask.text = subtaskEdit.mainEdit.value
+}
+
+function setsubsubtasktext(subtaskid, subsubtaskid) {
+    var subsubtask = paper.tasks[page].subtasks[subtaskid].subtasks[subsubtaskid]
+    var subsubtaskEdit = htmledit.subtasks[subtaskid].subtasks[subsubtaskid]
+    subsubtask = subsubtaskEdit.value
 }
