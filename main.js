@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, Menu, ipcMain } = require('electron')
 const path = require('path')
 
 const createWindow = () => {
@@ -6,7 +6,10 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      nodeIntegration: true,
+      enableRemoteModule: true,
+      contextIsolation: false,
+      preload: path.join(__dirname, 'preload.js'),
     }
   })
 
@@ -85,3 +88,10 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
+
+async function settitle(event, newtitle) {
+  console.log('set new title: ' + newtitle)
+  app.settitle(newtitle)
+}
+
+ipcMain.on('settitle', settitle)

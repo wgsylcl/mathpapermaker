@@ -12,16 +12,15 @@
     <div id="headdiv">
         <h3>试卷导言</h3>
         <form name="paper">
-            试卷标题<input type="text" name="title"><br>
-            试卷信息<input type="text" name="information">
+            试卷标题<input type="text" name="title" onchange="setpapertitle()"><br>
+            试卷信息<input type="text" name="information" onchange="setpaperinformation()">
         </form>
     </div>
     <div id="guidediv">
         <h3>试卷内容</h3>
-        <button type="button" id="lastTaskButton">上一题</button>
-        <p id="pageEdit">第0题，共0题，</p>
-        <p id="typeEdit">本题是**题</p>
-        <button type="button" id="nextTaskbutton">下一题</button>
+        <p id="pageEdit"></p>
+        <button type="button" id="lastTaskButton" onclick="topage(page-1)">上一题</button>
+        <button type="button" id="nextTaskButton" onclick="topage(page+1)">下一题</button>
     </div>
     <div id="maindiv">
         <form name="task">
@@ -34,13 +33,13 @@
             <fieldset>
                 <legend>选项内容：</legend>
                 显示格式：
-                <input type="radio" name="type" value="onp" checked>一行4个
-                <input type="radio" name="type" value="twp">一行2个
-                <input type="radio" name="type" value="fop">一行1个
-                <br>A&nbsp;<input type="text" name="A">
-                <br>B&nbsp;<input type="text" name="B">
-                <br>C&nbsp;<input type="text" name="C">
-                <br>D&nbsp;<input type="text" name="D">
+                <input type="radio" name="type" value="onp" onchange="setchoicetype(1)" checked>一行4个
+                <input type="radio" name="type" value="twp" onchange="setchoicetype(2)">一行2个
+                <input type="radio" name="type" value="fop" onchange="setchoicetype(3)">一行1个
+                <br>A&nbsp;<input type="text" name="A" onchange="setchoice('A')">
+                <br>B&nbsp;<input type="text" name="B" onchange="setchoice('B')">
+                <br>C&nbsp;<input type="text" name="C" onchange="setchoice('C')">
+                <br>D&nbsp;<input type="text" name="D" onchange="setchoice('D')">
             </fieldset>
         </form>
     </div>

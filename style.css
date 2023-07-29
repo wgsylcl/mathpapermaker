@@ -12,69 +12,69 @@ textarea {
 }
 
 #choicediv {
-    display: block;
+    display: none;
 }
 
 #maindiv {
-    display: block;
+    display: none;
 }
 
 #headdiv {
-    display: block;
+    display: none;
 }
 
 #guidediv {
-    display: block;
+    display: none;
 }
 
 #sub1subtask1 {
-    display: block;
+    display: none;
 }
 
 #sub2subtask1 {
-    display: block;
+    display: none;
 }
 
 #sub1subtask2 {
-    display: block;
+    display: none;
 }
 
 #sub2subtask2 {
-    display: block;
+    display: none;
 }
 
 #sub1subtask3 {
-    display: block;
+    display: none;
 }
 
 #sub2subtask3 {
-    display: block;
+    display: none;
 }
 
 #sub1subtask4 {
-    display: block;
+    display: none;
 }
 
 #sub2subtask4 {
-    display: block;
+    display: none;
 }
 
 #subtask1 {
-    display: block;
+    display: none;
 }
 
 #subtask2 {
-    display: block;
+    display: none;
 }
 
 #subtask3 {
-    display: block;
+    display: none;
 }
 
 #subtask4 {
-    display: block;
+    display: none;
 }
 
 #subtaskdiv {
-    display: block;
+    display: none;
 }
