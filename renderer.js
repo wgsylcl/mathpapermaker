@@ -89,12 +89,12 @@ function loadpage() {
     htmledit.headdiv.style.display = 'block'
     htmledit.lastpageButton.style.display = 'block'
     htmledit.nextpageButton.style.display = 'block'
-    if(page <= 1)
-    htmledit.lastpageButton.style.display = 'none'
-    if(page >= 24)
-    htmledit.nextpageButton.style.display = 'none'
-    var types = ['未知','选择','填空','解答']
-    htmledit.pageEdit.innerHTML = '第'+page+'题，共24题，本题是'+types[task.type]+'题。'
+    if (page <= 1)
+        htmledit.lastpageButton.style.display = 'none'
+    if (page >= 24)
+        htmledit.nextpageButton.style.display = 'none'
+    var types = ['未知', '选择', '填空', '解答']
+    htmledit.pageEdit.innerHTML = '第' + page + '题，共24题，本题是' + types[task.type] + '题。'
     for (var i = 1; i <= 4; i++) {
         var subtaskEdit = htmledit.subtasks[i]
         subtaskEdit.mainEdit.style.display = 'none'
@@ -123,7 +123,7 @@ function loadpage() {
                 subtaskEdit.mainEdit.value = subtask.mainEdit
                 var subsubtaskcnt = subtask.cnt
                 subtaskEdit.cnt[subsubtaskcnt].checked = true
-                for(var j = 1; j <= subsubtaskcnt; j++) {
+                for (var j = 1; j <= subsubtaskcnt; j++) {
                     var subsubtaskEdit = subtaskEdit.subtasks[j]
                     subsubtaskEdit.value = subtask.subtasks[j]
                     subsubtaskEdit.style.display = 'block'
@@ -133,8 +133,7 @@ function loadpage() {
     }
 }
 
-function topage(newpage)
-{
+function topage(newpage) {
     page = newpage
     loadpage()
 }
