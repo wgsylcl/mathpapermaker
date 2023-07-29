@@ -14,47 +14,77 @@ const htmledit = {
     choices: [document.choice.E, document.choice.A, document.choice.B, document.choice.C, document.choice.D],
     subtasks: [
         {
+            div: document.getElementById('subtask0'),
             mainEdit: document.getElementById('subtask0main'),
             subtasks: [
                 document.getElementById('empty'),
                 document.getElementById('sub1subtask0'),
                 document.getElementById('sub2subtask0')
+            ],
+            subtaskdivs: [
+                document.getElementById('empty'),
+                document.getElementById('sub1subtask0div'),
+                document.getElementById('sub2subtask0div')
             ]
         },
         {
+            div: document.getElementById('subtask1'),
             mainEdit: document.getElementById('subtask1main'),
             cnt: document.subtask1.cnt,
             subtasks: [
                 document.getElementById('empty'),
                 document.getElementById('sub1subtask1'),
                 document.getElementById('sub2subtask1')
+            ],
+            subtaskdivs: [
+                document.getElementById('empty'),
+                document.getElementById('sub1subtask1div'),
+                document.getElementById('sub2subtask1div')
             ]
         },
         {
+            div: document.getElementById('subtask2'),
             mainEdit: document.getElementById('subtask2main'),
             cnt: document.subtask2.cnt,
             subtasks: [
                 document.getElementById('empty'),
                 document.getElementById('sub1subtask2'),
                 document.getElementById('sub2subtask2')
+            ],
+            subtaskdivs: [
+                document.getElementById('empty'),
+                document.getElementById('sub1subtask2div'),
+                document.getElementById('sub2subtask2div')
             ]
         },
         {
+            div: document.getElementById('subtask3'),
             mainEdit: document.getElementById('subtask3main'),
             cnt: document.subtask3.cnt,
             subtasks: [
                 document.getElementById('empty'),
                 document.getElementById('sub1subtask3'),
                 document.getElementById('sub2subtask3')
+            ],
+            subtaskdivs: [
+                document.getElementById('empty'),
+                document.getElementById('sub1subtask3div'),
+                document.getElementById('sub2subtask3div')
             ]
         },
         {
+            div: document.getElementById('subtask4'),
             mainEdit: document.getElementById('subtask4main'),
             cnt: document.subtask4.cnt,
             subtasks: [
                 document.getElementById('empty'),
                 document.getElementById('sub1subtask4'),
                 document.getElementById('sub2subtask4')
+            ],
+            subtaskdivs: [
+                document.getElementById('empty'),
+                document.getElementById('sub1subtask4div'),
+                document.getElementById('sub2subtask4div')
             ]
         }
     ]
@@ -97,10 +127,10 @@ function loadpage() {
     htmledit.pageEdit.innerHTML = '第' + page + '题，共24题，本题是' + types[task.type] + '题。'
     for (var i = 1; i <= 4; i++) {
         var subtaskEdit = htmledit.subtasks[i]
-        subtaskEdit.mainEdit.style.display = 'none'
+        subtaskEdit.div.style.display = 'none'
         for (var j = 1; j <= 2; j++) {
             var subsubtaskEdit = subtaskEdit.subtasks[j]
-            subsubtaskEdit.style.display = 'none'
+            var subsubtaskdiv = subtaskEdit.subtaskdivs[j]
         }
     }
     htmledit.mainEdit.value = task.text
@@ -120,13 +150,15 @@ function loadpage() {
             for (var i = 1; i <= subtaskcnt; i++) {
                 var subtask = task.subtasks[i]
                 var subtaskEdit = htmledit.subtasks[i]
-                subtaskEdit.mainEdit.value = subtask.mainEdit
-                var subsubtaskcnt = subtask.cnt
+                subtaskEdit.div.style.display = 'block'
+                subtaskEdit.mainEdit.value = subtask.text
+                var subsubtaskcnt = subtask.subtaskcnt
                 subtaskEdit.cnt[subsubtaskcnt].checked = true
                 for (var j = 1; j <= subsubtaskcnt; j++) {
                     var subsubtaskEdit = subtaskEdit.subtasks[j]
+                    var subsubtaskdiv = subtaskEdit.subtaskdivs[j]
                     subsubtaskEdit.value = subtask.subtasks[j]
-                    subsubtaskEdit.style.display = 'block'
+                    subsubtaskdiv.style.display = 'block'
                 }
             }
             break;
@@ -532,4 +564,36 @@ function setchoice(name) {
 
 function setchoicetype(type) {
     paper.tasks[page].choicetype = type
+}
+
+function setsubtaskcnt(num) {
+    var task = paper.tasks[page]
+    task.subtaskcnt = num
+    for (var i = 1; i <= num; i++) {
+        var subtask = task.subtasks[i]
+        var subtaskEdit = htmledit.subtasks[i]
+        subtaskEdit.mainEdit.value = subtask.text
+        subtaskEdit.div.style.display = 'block'
+        var subsubtaskcnt = subtask.subtaskcnt
+        subtaskEdit.cnt[subsubtaskcnt].checked = true
+        for (var j = 1; j <= subsubtaskcnt; j++) {
+            var subsubtaskEdit = subtaskEdit.subtasks[j]
+            var subsubtaskdiv = subtaskEdit.subtaskdivs[j]
+            subsubtaskEdit.value = subtask.subtasks[j]
+            subsubtaskdiv.style.display = 'block'
+        }
+    }
+}
+
+function setsubsubtaskcnt(taskid, num) {
+    var task = paper.tasks[page]
+    var subtask = task.subtasks[taskid]
+    subtask.subtaskcnt = num
+    var taskEdit = htmledit.subtasks[taskid]
+    for (var i = 1; i <= 2; i++) {
+        taskEdit.subtaskdivs[i].style.display = 'none'
+    }
+    for (var i = 1; i <= num; i++) {
+        taskEdit.subtaskdivs[i].style.display = 'block'
+    }
 }

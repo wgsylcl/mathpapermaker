@@ -9,6 +9,7 @@ html {
 textarea {
     width: 600px;
     height: 150px;
+    font-family: Consolas, 'Times New Roman', Times, serif;
 }
 
 #choicediv {
@@ -27,35 +28,35 @@ textarea {
     display: none;
 }
 
-#sub1subtask1 {
+#sub1subtask1div {
     display: none;
 }
 
-#sub2subtask1 {
+#sub2subtask1div {
     display: none;
 }
 
-#sub1subtask2 {
+#sub1subtask2div {
     display: none;
 }
 
-#sub2subtask2 {
+#sub2subtask2div {
     display: none;
 }
 
-#sub1subtask3 {
+#sub1subtask3div {
     display: none;
 }
 
-#sub2subtask3 {
+#sub2subtask3div {
     display: none;
 }
 
-#sub1subtask4 {
+#sub1subtask4div {
     display: none;
 }
 
-#sub2subtask4 {
+#sub2subtask4div {
     display: none;
 }
 
