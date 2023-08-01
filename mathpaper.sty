@@ -1,0 +1,13 @@
+% !TEX program = xelatex
+\ProvidesPackage{mathpaper}
+\RequirePackage{mathpicture,basicmathpaper}
+\RequirePackage{amsmath,amsfonts,amssymb}
+\newcommand{\addspace}{\hspace*{\fill} \\ \hspace*{\fill} \\ \hspace*{\fill} \\ \hspace*{\fill} \\ \hspace*{\fill} \\ \hspace*{\fill} \\ \hspace*{\fill} }
+\newcommand{\addemptyline}{\hspace*{\fill} \\ \hspace*{\fill}}
+\newcommand{\complitingline}{\_\_\_\_\_\_\_\_\_}
+\newcommand{\textdot}[1]{{\heiti \CJKunderdot{#1}}}
+\RequirePackage{lastpage}
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\cfoot{数学试卷~~~第\thepage 页（共 \pageref{LastPage} 页）}
+\renewcommand{\headrulewidth}{0mm}

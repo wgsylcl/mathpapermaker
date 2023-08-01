@@ -1,4 +1,7 @@
+const { dialog } = require('@electron/remote')
+const fs = require('fs')
 const { ipcRenderer } = require('electron')
+const path = require('path')
 
 const htmledit = {
     warningEdit: document.getElementById('warningEdit'),
@@ -11,6 +14,8 @@ const htmledit = {
     lastpageButton: document.getElementById('lastTaskButton'),
     nextpageButton: document.getElementById('nextTaskButton'),
     pageEdit: document.getElementById('pageEdit'),
+    titleEdit: document.paper.title,
+    informationEdit: document.paper.information,
     choices: [document.choice.E, document.choice.A, document.choice.B, document.choice.C, document.choice.D],
     subtasks: [
         {
@@ -90,24 +95,85 @@ const htmledit = {
     ]
 }
 
+var saved = true
+var filepath = ''
+var filename = '未命名.paper'
+var created = false
+
 function openfile() {
     console.log('Call function openfile!')
+    if(savefile() == false) return
+    var ret = dialog.showOpenDialogSync({
+        filters: [
+            { name: '试卷配置文件', extensions: ['paper'] }
+        ],
+        title: '打开配置文件',
+        properties: ['openFile']
+    })
+    if (typeof (ret) == 'undefined') {
+        return
+    }
+    var jsondata = fs.readFileSync(ret[0], 'utf-8', () => { })
+    console.log(jsondata)
+    try {
+        var papertemp = JSON.parse(jsondata)
+    } catch (error) {
+        dialog.showErrorBox('解析失败', '解析失败，配置文件可能已经损坏！（error：' + error.message + '）')
+        return
+    }
+    paper = papertemp
+    filepath = ret[0]
+    filename = path.basename(filepath)
+    ipcRenderer.send('settitle', filename)
+    htmledit.titleEdit.value = paper.title
+    htmledit.informationEdit.value = paper.information
+    created = false
+    saved = true
+    page = 1
+    loadpage()
 }
 
 function createfile() {
     console.log('Call function createfile!')
+    if(savefile() == false) return
     paper = base_paper
     page = 1
+    created = true
+    saved = false
+    filepath = ''
+    filename = 'untitled.paper'
+    htmledit.titleEdit.value = paper.title
+    htmledit.informationEdit.value = paper.information
+    ipcRenderer.send('settitle', filename + '*')
     loadpage()
 }
 
 function savefile() {
     console.log('Call function savefile!')
+    if (saved) return
+    if (created) {
+        console.log('need save!')
+        var ret = dialog.showSaveDialogSync({
+            title: '保存文件',
+            filters: [
+                { name: '试卷配置文件', extensions: ['paper'] }
+            ],
+            defaultPath: ':/untitled.paper'
+        })
+        if (typeof (ret) == 'undefined') {
+            return false
+        }
+        filepath = ret
+        filename = path.basename(filepath)
+        created = false
+    }
+    saved = true
+    fs.writeFile(filepath, JSON.stringify(paper), () => { })
+    console.log(filename)
+    ipcRenderer.send('settitle', filename)
+    return true
 }
 
-function exportfile() {
-    console.log('Call function exportfile!')
-}
 
 function loadpage() {
     var task = paper.tasks.at(page)
@@ -127,10 +193,13 @@ function loadpage() {
     htmledit.pageEdit.innerHTML = '第' + page + '题，共24题，本题是' + types[task.type] + '题。'
     for (var i = 1; i <= 4; i++) {
         var subtaskEdit = htmledit.subtasks[i]
+        subtaskEdit.value = ''
         subtaskEdit.div.style.display = 'none'
         for (var j = 1; j <= 2; j++) {
             var subsubtaskEdit = subtaskEdit.subtasks[j]
+            subsubtaskEdit.value = ''
             var subsubtaskdiv = subtaskEdit.subtaskdivs[j]
+            subsubtaskdiv.style.display = 'none'
         }
     }
     htmledit.mainEdit.value = task.text
@@ -545,30 +614,48 @@ let page = 0
 function setpapertitle() {
     paper.title = document.paper.title.value
     console.log('change the title of paper to ' + document.paper.title.value)
+    ipcRenderer.send('settitle',filename+'*')
+    saved = false
 }
 
 function setpaperinformation() {
     paper.information = document.paper.information
     console.log('change the information of paper to ' + document.paper.information.value)
+    ipcRenderer.send('settitle',filename+'*')
+    saved = false
 }
 
 function settext() {
     edit = htmledit.mainEdit
     paper.tasks[page].text = edit.value
+    ipcRenderer.send('settitle',filename+'*')
+    saved = false
 }
 
 function setchoice(name) {
     edit = htmledit.choices[name]
     paper.tasks[page].choices[name] = edit.value
+    ipcRenderer.send('settitle',filename+'*')
+    saved = false
 }
 
 function setchoicetype(type) {
     paper.tasks[page].choicetype = type
+    ipcRenderer.send('settitle',filename+'*')
+    saved = false
 }
 
 function setsubtaskcnt(num) {
+    saved = false
+    ipcRenderer.send('settitle',filename+'*')
     var task = paper.tasks[page]
     task.subtaskcnt = num
+    for (var i=1;i<=4;i++)
+    {
+        htmledit.subtasks[i].div.style.display = 'none'
+        for(var j=1;j<=2;j++)
+        htmledit.subtasks[i].subtaskdivs[j].style.display = 'none'
+    }
     for (var i = 1; i <= num; i++) {
         var subtask = task.subtasks[i]
         var subtaskEdit = htmledit.subtasks[i]
@@ -586,6 +673,8 @@ function setsubtaskcnt(num) {
 }
 
 function setsubsubtaskcnt(taskid, num) {
+    saved = false
+    ipcRenderer.send('settitle',filename+'*')
     var task = paper.tasks[page]
     var subtask = task.subtasks[taskid]
     subtask.subtaskcnt = num
@@ -599,6 +688,8 @@ function setsubsubtaskcnt(taskid, num) {
 }
 
 function setsubtasktext(taskid) {
+    saved = false
+    ipcRenderer.send('settitle',filename+'*')
     var task = paper.tasks[page]
     var subtask = task.subtasks[taskid]
     var subtaskEdit = htmledit.subtasks[taskid]
@@ -606,7 +697,126 @@ function setsubtasktext(taskid) {
 }
 
 function setsubsubtasktext(subtaskid, subsubtaskid) {
-    var subsubtask = paper.tasks[page].subtasks[subtaskid].subtasks[subsubtaskid]
+    ipcRenderer.send('settitle',filename+'*')
+    saved = false
     var subsubtaskEdit = htmledit.subtasks[subtaskid].subtasks[subsubtaskid]
-    subsubtask = subsubtaskEdit.value
+    console.log(typeof (paper.tasks[page].subtasks[subtaskid].subtasks[subsubtaskid]))
+    paper.tasks[page].subtasks[subtaskid].subtasks[subsubtaskid] = subsubtaskEdit.value
+}
+
+var base_tex = ''
+var mathpaper_sty = ''
+var basicmathpaper_sty = ''
+var mathpicture_sty = ''
+
+base_tex = fs.readFileSync('base.tex', 'utf-8', () => { })
+mathpaper_sty = fs.readFileSync('mathpaper.sty', 'utf-8', () => { })
+basicmathpaper_sty = fs.readFileSync('basicmathpaper.sty', 'utf-8', () => { })
+mathpicture_sty = fs.readFileSync('mathpicture.sty', 'utf-8', () => { })
+
+function exportfile() {
+    console.log('Call function exportfile!')
+    var savedir = dialog.showOpenDialogSync({
+        properties: ['openDirectory'],
+        title: '保存Latex项目'
+    })
+    if (typeof (savedir) == 'undefined')
+        return
+    fs.writeFileSync(path.join(savedir[0], 'mathpaper.sty'), mathpaper_sty)
+    fs.writeFileSync(path.join(savedir[0], 'mathpicture.sty'), mathpicture_sty)
+    fs.writeFileSync(path.join(savedir[0], 'basicmathpaper.sty'), basicmathpaper_sty)
+    fs.writeFileSync(path.join(savedir[0], 'main.tex'), linktex())
+}
+
+function linktex() {
+    var ret = base_tex
+    var code = ''
+    code += ('\\papertitle{' + paper.title + '}\n')
+    ret += code
+    code = ''
+    code += ('\\paperinformation{' + paper.information + '}\n')
+    ret += code
+    code = ''
+    ret += '\\informationline\n'
+    ret += '\\begin{questions}{\\selectingintroduction}\n'
+    for (var i = 1; i <= 10; i++) {
+        code = '    \\question '
+        var task = paper.tasks[i]
+        code += task.text
+        code += '\n'
+        ret += code
+        code = '    '
+        switch (task.choicetype) {
+            case onp:
+                code += '\\onp'
+                break
+
+            case twp:
+                code += '\\twp'
+                break
+
+            case fop:
+                code += '\\fop'
+                break
+        }
+        for (var j = 1; j <= 4; j++) {
+            code += '{'
+            code += task.choices[j]
+            code += '}'
+        }
+        code += '\n'
+        ret += code
+    }
+    ret += '\\end{questions}\n\n'
+    ret += '\\begin{questions}{\\complitingintroduction}\n'
+    for (var i = 11; i <= 16; i++) {
+        var task = paper.tasks[i]
+        code = '    \\question '
+        code += task.text
+        code += '\n'
+        ret += code
+    }
+    ret += '\\end{questions}\n\n'
+    ret += '\\begin{questions}{\\answeringintroduction}\n'
+    for (var i = 17; i <= 24; i++) {
+        code = '    \\question '
+        var task = paper.tasks[i]
+        code += task.text
+        code += '\n'
+        code += linksubtask(task)
+        ret += code
+    }
+    ret += '\\end{questions}\n\n'
+    ret += '\\end{document}\n'
+    return ret
+}
+
+function linksubtask(task) {
+    var ret = '', code = ''
+    if (task.subtaskcnt == 0) return ''
+    ret += '    \\begin{subquestions}\n'
+    for (var i = 1; i <= task.subtaskcnt; i++) {
+        code = '        \\subquestion '
+        var subtask = task.subtasks[i]
+        code += subtask.text
+        code += '\n'
+        code += linksubsubtask(subtask)
+        ret += code
+    }
+    ret += '    \\end{subquestions}\n'
+    return ret
+}
+
+function linksubsubtask(task) {
+    if (task.subtaskcnt == 0) return ''
+    var code = '', ret = ''
+    ret += '        \\begin{subsubquestions}\n'
+    for (var i = 1; i <= task.subtaskcnt; i++) {
+        code = '            \\subsubquestion '
+        code += task.subtasks[i]
+        code += '\n'
+        ret += code
+    }
+    ret += '        \\end{subsubquestions}\n'
+    return ret
 }

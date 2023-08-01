@@ -1,0 +1,66 @@
+% !TEX program = xelatex
+\ProvidesPackage{basicmathpaper}
+\RequirePackage{enumitem}
+\RequirePackage{fontspec}
+
+\newcommand{\selectingintroduction}{一、选择题：本大题共10小题，每小题3分，共30分，在每小题给出的四个选项中，只有一项是符合题目要求的。}
+\newcommand{\complitingintroduction}{二、填空题：本大题共6小题，每小题3分，共18分。}
+\newcommand{\answeringintroduction}{三、解答题：本大题共8小题，共72分，解答应写出必要的文字说明、证明过程或演算步骤。}
+\newcommand{\papertitle}[1]{\section*{\centering #1}}
+\newcommand{\paperinformation}[1]{\centerline{#1}}
+\newcommand{\informationline}{\centerline{班级：\complitingline ~~~~~~ 姓名：\complitingline ~~~~~~ 学号：\complitingline ~~~~~~ 得分：\complitingline}}
+
+\newcommand{\circnum}[1]{\ding{\numexpr171+#1\relax}}
+
+%选择题盒子,1行4选项
+\newcommand{\onp} [4] { \\
+    \begin{tabular} {*{4}{@{}p{3.5cm}}}
+        A.~#1 & B.~#2 & C.~#3 & D.~#4
+    \end{tabular}
+}
+%选择题盒子,1行2选项
+\newcommand{\twp} [4] { \\
+    \begin{tabular} {*{2}{@{}p{7cm}}}
+        A.~#1 & B.~#2
+    \end{tabular} \\
+    \begin{tabular} {*{2}{@{}p{7cm}}}
+        C.~#3 & D.~#4
+    \end{tabular}
+}
+%选择题盒子,1行1选项
+\newcommand{\fop} [4] { \\
+    A.~#1 \\
+    B.~#2 \\
+    C.~#3 \\
+    D.~#4
+}
+
+\newcounter{taskcounter} % 大题当前最后一题序号计数器
+\newcounter{subtaskcounter}[taskcounter] % 小题当前最后一题序号计数器
+\newcounter{subsubtaskcounter}[subtaskcounter] % 二级小题当前最后一题序号计数器
+
+\newcommand{\question}{
+\stepcounter{taskcounter} % 大题计数器加一
+\item}
+
+\newcommand{\subquestion}{
+\stepcounter{subtaskcounter} % 小题计数器加一
+\item}
+
+\newcommand{\subsubquestion}{
+\stepcounter{subsubtaskcounter} % 二级小题计数器加一
+\item[\circnum{\value{subsubtaskcounter}}]
+}
+
+\newenvironment{questions}[1]
+{\section*{\normalsize #1}
+\begin{enumerate}[itemsep=1pt,leftmargin=17pt]\setcounter{enumi}{\value{taskcounter}}}
+{\end{enumerate}}
+
+\newenvironment{subquestions}
+{\begin{compactenum}[（1）]}
+{\end{compactenum}}
+
+\newenvironment{subsubquestions}
+{\begin{compactenum}}
+{\end{compactenum}}

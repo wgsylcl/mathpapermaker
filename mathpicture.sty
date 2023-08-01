@@ -1,0 +1,27 @@
+% !TEX program = xelatex
+\ProvidesPackage{mathpicture}
+\RequirePackage[UTF8]{ctex}
+\RequirePackage[a4paper,left=15mm,right=15mm,top=16mm,bottom=19mm]{geometry}
+\RequirePackage{xeCJKfntef}
+\RequirePackage{amsmath,amsfonts,amssymb}
+\RequirePackage{tikz}
+\RequirePackage{pifont}
+\RequirePackage{subfigure}
+\RequirePackage{caption}
+\usetikzlibrary{arrows.meta}
+\renewcommand{\figurename}{}
+\renewcommand{\thesubfigure}{}
+\makeatletter \renewcommand{\@thesubfigure}{\thesubfigure \space}
+\renewcommand{\p@subfigure}{} \makeatother
+\setmainfont{Times New Roman}
+%图片盒子 参数1为路径 2为大小
+\newcommand{\smallpicture}[2]{\includegraphics[scale = #2]{#1}}
+\RequirePackage{graphicx}  %插图包
+\RequirePackage{paralist}  %序号包
+%定位器 参数1、2为横纵坐标 3为插入盒子
+\newcommand{\pbox} [3] {
+    \unitlength=1mm
+    \begin{picture} (0, 0)
+        \put (#1, #2) {#3}
+    \end{picture}
+}

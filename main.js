@@ -9,10 +9,12 @@ const createWindow = () => {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: false,
+      enableRemoteModule: true,
       preload: path.join(__dirname, 'preload.js'),
     }
   })
-
+  require("@electron/remote/main").initialize()
+  require("@electron/remote/main").enable(win.webContents)
   let applicationMenu = [
     {
       label: 'file',
@@ -70,7 +72,7 @@ const createWindow = () => {
 
 app.whenReady().then(() => {
   createWindow()
-
+  ipcMain.on('settitle',settitle)
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow()
@@ -86,7 +88,7 @@ app.on('window-all-closed', () => {
 
 async function settitle(event, newtitle) {
   console.log('set new title: ' + newtitle)
-  app.settitle(newtitle)
+  const webContents = event.sender
+  const win = BrowserWindow.fromWebContents(webContents)
+  win.setTitle(newtitle)
 }
-
-ipcMain.on('settitle', settitle)
