@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "build": "electron-builder"
   },
   "repository": {
     "type": "git",
@@ -34,5 +35,25 @@
     "fs": "^0.0.1-security",
     "path": "^0.12.7",
     "update-electron-app": "^2.0.1"
+  },
+  "build": {
+    "appId": "mathpapermaker",
+    "asar": false,
+    "productName": "mathpapermaker",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "mathpapermaker"
+    }
   }
 }

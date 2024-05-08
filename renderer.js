@@ -709,10 +709,10 @@ var mathpaper_sty = ''
 var basicmathpaper_sty = ''
 var mathpicture_sty = ''
 
-base_tex = fs.readFileSync('base.tex', 'utf-8', () => { })
-mathpaper_sty = fs.readFileSync('mathpaper.sty', 'utf-8', () => { })
-basicmathpaper_sty = fs.readFileSync('basicmathpaper.sty', 'utf-8', () => { })
-mathpicture_sty = fs.readFileSync('mathpicture.sty', 'utf-8', () => { })
+base_tex = fs.readFileSync('./resources/app/base.tex', 'utf-8', () => { })
+mathpaper_sty = fs.readFileSync('./resources/app/mathpaper.sty', 'utf-8', () => { })
+basicmathpaper_sty = fs.readFileSync('./resources/app/basicmathpaper.sty', 'utf-8', () => { })
+mathpicture_sty = fs.readFileSync('./resources/app/mathpicture.sty', 'utf-8', () => { })
 
 function exportfile() {
     console.log('Call function exportfile!')

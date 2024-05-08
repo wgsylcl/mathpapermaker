@@ -1,0 +1,559 @@
+{
+    "title": "测试试卷",
+    "information": "时间：2小时~~~满分：120分",
+    "tasks": [
+        {},
+        {
+            "type": 1,
+            "text": "T1",
+            "choicetype": 1,
+            "choices": [
+                "",
+                "T1A",
+                "T1B",
+                "T1C",
+                "T1D"
+            ]
+        },
+        {
+            "type": 1,
+            "text": "T2",
+            "choicetype": 2,
+            "choices": [
+                "",
+                "T2A",
+                "T2B",
+                "T2C",
+                "T2D"
+            ]
+        },
+        {
+            "type": 1,
+            "text": "T3",
+            "choicetype": 3,
+            "choices": [
+                "",
+                "T3A",
+                "T3B",
+                "T3C",
+                "T3D"
+            ]
+        },
+        {
+            "type": 1,
+            "text": "T4",
+            "choicetype": 1,
+            "choices": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "type": 1,
+            "text": "T5",
+            "choicetype": 1,
+            "choices": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "type": 1,
+            "text": "T6",
+            "choicetype": 1,
+            "choices": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "type": 1,
+            "text": "T7",
+            "choicetype": 1,
+            "choices": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "type": 1,
+            "text": "T8",
+            "choicetype": 1,
+            "choices": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "type": 1,
+            "text": "T9",
+            "choicetype": 1,
+            "choices": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "type": 1,
+            "text": "T10",
+            "choicetype": 1,
+            "choices": [
+                "",
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "type": 2,
+            "text": "T11"
+        },
+        {
+            "type": 2,
+            "text": "T12"
+        },
+        {
+            "type": 2,
+            "text": "T13"
+        },
+        {
+            "type": 2,
+            "text": "T14"
+        },
+        {
+            "type": 2,
+            "text": "T15"
+        },
+        {
+            "type": 2,
+            "text": "T16"
+        },
+        {
+            "type": 3,
+            "text": "T17main",
+            "subtaskcnt": 0,
+            "subtasks": [
+                {},
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "type": 3,
+            "text": "T18main",
+            "subtaskcnt": 2,
+            "subtasks": [
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "T18.1",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "T18.2",
+                    "subtaskcnt": 2,
+                    "subtasks": [
+                        "",
+                        "T18.2.1",
+                        "T18.2.2"
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "type": 3,
+            "text": "T19main",
+            "subtaskcnt": 0,
+            "subtasks": [
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "type": 3,
+            "text": "T20main",
+            "subtaskcnt": 4,
+            "subtasks": [
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "T20.1",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "T20.2",
+                    "subtaskcnt": 2,
+                    "subtasks": [
+                        "",
+                        "T20.2.1",
+                        "T20.2.2"
+                    ]
+                },
+                {
+                    "text": "T20.3",
+                    "subtaskcnt": 1,
+                    "subtasks": [
+                        "",
+                        "T20.3.1",
+                        ""
+                    ]
+                },
+                {
+                    "text": "T20.4",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "type": 3,
+            "text": "T21main",
+            "subtaskcnt": 0,
+            "subtasks": [
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "type": 3,
+            "text": "T22main",
+            "subtaskcnt": 0,
+            "subtasks": [
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "type": 3,
+            "text": "T23main",
+            "subtaskcnt": 0,
+            "subtasks": [
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "type": 3,
+            "text": "T24main",
+            "subtaskcnt": 0,
+            "subtasks": [
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                },
+                {
+                    "text": "",
+                    "subtaskcnt": 0,
+                    "subtasks": [
+                        "",
+                        "",
+                        ""
+                    ]
+                }
+            ]
+        }
+    ]
+}
